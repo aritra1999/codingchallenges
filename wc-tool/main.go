@@ -1,14 +1,13 @@
 package main
 
-import "fmt"
 import (
 	"flag"
 	"fmt"
+	"os"
 )
 
 
 func main() {
-	fmt.Println("Hello, World!")
 	countWords := flag.Bool("w", false, "bool flag to count words")
 	countLines := flag.Bool("l", false, "bool flag to count lines")
 	countBytes := flag.Bool("m", false, "bool flag to count bytes")
@@ -20,5 +19,20 @@ func main() {
 	fmt.Println("countLines:", *countLines)
 	fmt.Println("countBytes:", *countBytes)
 	fmt.Println("countChars:", *countChars)
+
+	extraArgs := flag.Args()
+
+	var fileName string
+	if len(extraArgs) == 1 {
+		fileName = extraArgs[0]
+		fmt.Println("fileName:", fileName)
+	} else {
+		panic("No file name provided :(")
+	}
+
+	content, err := os.ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
 
 }
