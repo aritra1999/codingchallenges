@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 func CountBytes(input []byte) int {
@@ -22,7 +23,8 @@ func CountLines(input []byte) int {
 }
 
 func CountWords(input []byte) int {
-	return len(input)
+	split := strings.Fields(string(input))
+	return len(split)
 }
 
 func main() {
@@ -59,6 +61,10 @@ func main() {
 
 	if *countLines {
 		output += strconv.Itoa(CountLines(content)) + "\t"
+	}
+
+	if *countWords {
+		output += strconv.Itoa(CountWords(content)) + "\t"
 	}
 
 	output += fileName
