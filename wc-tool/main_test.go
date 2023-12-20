@@ -57,7 +57,18 @@ func TestCountWords(t *testing.T) {
 	}
 }
 
+func TestCountChars(t *testing.T) {
+	input, err := os.ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
+
+	expected := 339292
+	result := CountChars(input)
+
+	if result != expected {
+		t.Errorf("CountChars(%q) = %d, exexted %d", input[:10], result, expected)
 	} else {
-		t.Logf("CountWords(%q) = %d, want %d", input, result, expected)
+		t.Logf("CountChars(%q) = %d, exexted %d", input[:10], result, expected)
 	}
 }

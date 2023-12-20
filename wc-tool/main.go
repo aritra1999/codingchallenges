@@ -35,11 +35,6 @@ func main() {
 
 	flag.Parse()
 
-	fmt.Println("countWords:", *countWords)
-	fmt.Println("countLines:", *countLines)
-	fmt.Println("countBytes:", *countBytes)
-	fmt.Println("countChars:", *countChars)
-
 	extraArgs := flag.Args()
 
 	var fileName string
