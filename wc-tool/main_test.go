@@ -1,6 +1,5 @@
 package main
 
-import "testing"
 import (
 	"fmt"
 	"testing"
@@ -34,3 +33,14 @@ func TestCountLines(t *testing.T) {
 	}
 }
 
+func TestCountWords(t *testing.T) {
+	input := []byte("Hello, World!")
+	expected := 2
+	result := CountWords(input)
+
+	if result != expected {
+		t.Errorf("CountWords(%q) = %d, want %d", input, result, expected)
+	} else {
+		t.Logf("CountWords(%q) = %d, want %d", input, result, expected)
+	}
+}
