@@ -4,12 +4,26 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func CountBytes(input []byte) int {
 	return len(input)
 }
 
+func CountLines(input []byte) int {
+	count := 0
+	for _, char := range input {
+		if char == '\n' {
+			count++
+		}
+	}
+	return count
+}
+
+func CountWords(input []byte) int {
+	return len(input)
+}
 
 func main() {
 	countWords := flag.Bool("w", false, "bool flag to count words")
@@ -41,6 +55,10 @@ func main() {
 	var output string = "\t"
 	if *countBytes {
 		output += strconv.Itoa(CountBytes(content)) + "\t"
+	}
+
+	if *countLines {
+		output += strconv.Itoa(CountLines(content)) + "\t"
 	}
 
 	output += fileName
