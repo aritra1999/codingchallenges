@@ -6,12 +6,16 @@ import (
 	"os"
 )
 
+func CountBytes(input []byte) int {
+	return len(input)
+}
+
 
 func main() {
 	countWords := flag.Bool("w", false, "bool flag to count words")
 	countLines := flag.Bool("l", false, "bool flag to count lines")
-	countBytes := flag.Bool("m", false, "bool flag to count bytes")
-	countChars := flag.Bool("c", false, "bool flag to count chars")
+	countBytes := flag.Bool("c", false, "bool flag to count bytes")
+	countChars := flag.Bool("m", false, "bool flag to count chars")
 
 	flag.Parse()
 
@@ -25,7 +29,6 @@ func main() {
 	var fileName string
 	if len(extraArgs) == 1 {
 		fileName = extraArgs[0]
-		fmt.Println("fileName:", fileName)
 	} else {
 		panic("No file name provided :(")
 	}
@@ -34,5 +37,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	var output string = "\t"
+	if *countBytes {
+		output += strconv.Itoa(CountBytes(content)) + "\t"
+	}
+
+	output += fileName
+	fmt.Println(output)
 
 }
