@@ -1,45 +1,62 @@
 package main
 
 import (
-	"fmt"
+	"os"
 	"testing"
 )
 
+// Expected outputs are taken from https://codingchallenges.fyi/challenges/challenge-wc/
+
+var fileName string = "test.txt"
+
 func TestCountBytes(t *testing.T) {
-	input := []byte("Hello, World!")
-	expected := 13
+	input, err := os.ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
+
+	expected := 342190
 	result := CountBytes(input)
 
 	if result != expected {
-		t.Errorf("CountBytes(%q) = %d, want %d", input, result, expected)
+		t.Errorf("CountBytes(%q) = %d, exexted %d", input[:10], result, expected)
 	} else {
-		t.Logf("CountBytes(%q) = %d, want %d", input, result, expected)
+		t.Logf("CountBytes(%q) = %d, exexted %d", input[:10], result, expected)
 	}
 }
 
 func TestCountLines(t *testing.T) {
-	inputLine1 := []byte("Hello, World!This is a new line")
-	inputLine2 := []byte("This is a new line")
+	input, err := os.ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
 
-	input := []byte(fmt.Sprintf("%s\n %s\n", inputLine1, inputLine2))
-
-	expected := 2
+	expected := 7145
 	result := CountLines(input)
 
 	if result != expected {
-		t.Errorf("CountLines(%q) = %d, want %d", input, result, expected)
+		t.Errorf("CountLines(%q) = %d, exexted %d", input[:10], result, expected)
 	} else {
-		t.Logf("CountLines(%q) = %d, want %d", input, result, expected)
+		t.Logf("CountLines(%q) = %d, exexted %d", input[:10], result, expected)
 	}
 }
 
 func TestCountWords(t *testing.T) {
-	input := []byte("Hello, World!")
-	expected := 2
+	input, err := os.ReadFile(fileName)
+	if err != nil {
+		panic(err)
+	}
+
+	expected := 58164
 	result := CountWords(input)
 
 	if result != expected {
-		t.Errorf("CountWords(%q) = %d, want %d", input, result, expected)
+		t.Errorf("CountWords(%q) = %d, exexted %d", input[:10], result, expected)
+	} else {
+		t.Logf("CountWords(%q) = %d, exexted %d", input[:10], result, expected)
+	}
+}
+
 	} else {
 		t.Logf("CountWords(%q) = %d, want %d", input, result, expected)
 	}
