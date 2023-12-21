@@ -57,13 +57,10 @@ func main() {
 
 	var output string = "\t"
 
-	// if !*countWords && !*countLines && !*countBytes && !*countChars {
-	// 	fmt.Printf("%d %d %d %s\n", CountWords(string(content)), len(content), len(content), fileName)
-	// 	return
-	// }
-
-	if *countBytes {
-		output += strconv.Itoa(CountBytes(content)) + "\t"
+	if !*countWords && !*countLines && !*countBytes && !*countChars {
+		*countBytes = true
+		*countLines = true
+		*countWords = true
 	}
 
 	if *countLines {
@@ -72,6 +69,10 @@ func main() {
 
 	if *countWords {
 		output += strconv.Itoa(CountWords(content)) + "\t"
+	}
+
+	if *countBytes {
+		output += strconv.Itoa(CountBytes(content)) + "\t"
 	}
 
 	if *countChars {
