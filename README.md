@@ -2,7 +2,7 @@
 
 https://codingchallenges.fyi/challenges/intro
 
-- [ ] [Write Your Own wc Tool](https://codingchallenges.fyi/challenges/challenge-wc)
+- [x] [Write Your Own wc Tool](https://codingchallenges.fyi/challenges/challenge-wc)
 - [ ] Write Your Own JSON Parser
 - [ ] Write Your Own Compression Tool
 - [ ] Write Your Own cut Tool
