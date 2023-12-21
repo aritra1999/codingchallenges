@@ -6,6 +6,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"unicode/utf8"
 )
 
 func CountBytes(input []byte) int {
@@ -25,6 +26,11 @@ func CountLines(input []byte) int {
 func CountWords(input []byte) int {
 	split := strings.Fields(string(input))
 	return len(split)
+}
+
+func CountChars(input []byte) int {
+	nonSpecialCharCount := utf8.RuneCountInString(string(input))
+	return nonSpecialCharCount
 }
 
 func main() {
@@ -50,6 +56,12 @@ func main() {
 	}
 
 	var output string = "\t"
+
+	// if !*countWords && !*countLines && !*countBytes && !*countChars {
+	// 	fmt.Printf("%d %d %d %s\n", CountWords(string(content)), len(content), len(content), fileName)
+	// 	return
+	// }
+
 	if *countBytes {
 		output += strconv.Itoa(CountBytes(content)) + "\t"
 	}
@@ -60,6 +72,10 @@ func main() {
 
 	if *countWords {
 		output += strconv.Itoa(CountWords(content)) + "\t"
+	}
+
+	if *countChars {
+		output += strconv.Itoa(CountChars(content)) + "\t"
 	}
 
 	output += fileName
